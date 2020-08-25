@@ -36,6 +36,10 @@ O resultado deverá ser seu nome, sua data de nascimento e sua idade.
 	
 	<?php
 	
+	$name = "";
+	$datanascimento = "";
+	$idade = "";
+	
 	if(isset($_GET["nome"]) && isset($_GET["data"])) 
 	{
 		$name = $_GET["nome"];
@@ -50,13 +54,18 @@ O resultado deverá ser seu nome, sua data de nascimento e sua idade.
 	
 	?>
 	
-	<div class="response">
+	
 	<?php
 		
-		echo "Nome: " . $name . "<br/>Data de Nascimento: " . $datanascimento . "<br/>Idade: " . $idade;
+		if(!empty($name) && !empty($datanascimento) && !empty($idade))
+		{
+			echo '<div class="response">';
+			echo "Nome: " . $name . "<br/>Data de Nascimento: " . $datanascimento . "<br/>Idade: " . $idade;
+			echo '</div>';
+		}	
 		
 	?>	
-	</div>	
+		
 	
 </body>
 </html>
