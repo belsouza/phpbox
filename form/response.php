@@ -2,13 +2,11 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Documento sem título</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Response</title>
+<link rel="stylesheet" type="text/css" href="css/response.style.css" >	
 	
-	<style>
-		.nome{ background-color: greenyellow;  padding: 10px;}
-		.idade{ background-color: deeppink;  padding: 10px;}
-		.res{ width:  100px;}	
-	</style>
 </head>
 
 <body>
@@ -19,37 +17,59 @@
 		
 	$nome = "";
 	$idade = "";
-	$data = array();
+	$email = "";
+	$senha = "";
+	$mostraemail = "";
+	$mostraidade = "";
+	$mostranome = "";
 	
-	if(isset($_POST["nome"]) && (isset($_POST["idade"]))){
+	if(isset($_POST["nome"]) && (isset($_POST["idade"]) && isset($_POST["email"]) && isset($_POST["senha"]))){
 		
-		$nome = valida_nome($_POST["nome"]);
-		$idade = valida_inteiro($_POST["idade"]);
+		$validar = new Valida($_POST["nome"], $_POST["idade"], $_POST["email"], $_POST["senha"] );		
+		$nome = $validar->valida_nome();
+		$idade = $validar->valida_idade();
+		$email = $validar->valida_email();
+		$senha = $validar->valida_senha();
 		
 		
 		if(!$nome){
-			echo "<p>Ops! Nome Invalido!</p>";
+			echo "<span class='error'>Ops! Nome Invalido! " . $validar->getErrorName(). "</span>";
 		}		
 		if(!$idade){
-			echo "<p>Ops! Idade Invalida!</p>";
+			echo "<span class='error' >Ops! Idade Invalida! ". $validar->getErrorIdade(). "</span>";
 		}
-		if(!$nome || !$idade){
-			echo "<p>Ha erros de validacao no seu formulario. Tente novamente!</p>";
+		if(!$email){
+			echo "<span class='error' >Ops! Email Invalido! ".$validar->getErrorEmail(). "</span>";
+		}
+		if(!$senha){
+			echo "<span class='error' >Ops! Senha Invalida! ".$validar->getErrorPassword(). "</span>";
+		}
+		if(!$nome || !$idade || !$email || !$senha){
+			echo "<p class='advert'>Ha erros de validação no seu formulário. Tente novamente!</p>";
 		}
 		else{
-			echo $nome . $idade;
-		}
-		
-	}
-	
+			
+			$mostranome = "<h1>$nome</H1>";
+			$mostraidade = "<p>".$idade."</p>";
+			$mostraemail = "<p>".$email."</p>";
+			
+		}		
+	}	
 	
 	?>
 	
+	<header><?php echo $mostranome; ?></header>
+	<article>
+	<?php echo $mostraidade . $mostraemail; ?>	
+	</article>
 	
-	<button id="action">Voltar</button>
+	<footer>
+		<button id="action">Voltar</button>
+	</footer>
+	
 	<script>
 		document.getElementById("action").addEventListener("click", function(){
-			window.location.href = "formulario.php";
+			window.location.href = "index.php";
 		});
 	
 	</script>

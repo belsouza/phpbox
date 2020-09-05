@@ -1,0 +1,64 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html, body{
+	width: 100%;
+	height: 100%;
+	background-color: whitesmoke;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+	
+}
+
+span{
+	display: block;
+}
+
+header, footer{
+	background-color: aliceblue;
+	padding: 20px;
+	display: flex;
+}
+
+header{
+	border-bottom: solid 1px rgba(129,129,129,1.00);
+}
+
+footer{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+footer button{
+	padding: 30px;
+}
+
+article{
+	display: flex;
+	flex-direction: column;
+	padding: 10px 30px;
+	background-color: darkviolet;
+	color: white;
+	font-size: 15px;
+	height: 100%;	
+}
+
+
+
+.error{
+	color: red;
+}
+
+.advert{
+	display: block;
+	padding: 10px;
+	background-color: yellow;
+}
+
+
