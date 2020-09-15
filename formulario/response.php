@@ -1,17 +1,4 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Response</title>
-<link rel="stylesheet" type="text/css" href="css/response.style.css" >	
-	
-</head>
-
-<body>
-	
-	<?php
+<?php
 	
 	require_once("valida.php");
 		
@@ -56,8 +43,22 @@
 		}		
 	}	
 	
-	?>
+?>
+
+
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Response</title>
+<link rel="stylesheet" type="text/css" href="css/response.style.css" >	
 	
+</head>
+
+<body>	
 	<header><?php echo $mostranome; ?></header>
 	<article>
 	<?php echo $mostraidade . $mostraemail; ?>	
