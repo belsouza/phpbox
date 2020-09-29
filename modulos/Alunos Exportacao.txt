@@ -1,0 +1,4 @@
+matricula;nome;endereco;cep;cidade;estado;cpf;datanascimento
+20201123456;Joao;rua das marrecas s/n;20031120;rio de janeiro;023655444412;10/05/1986
+20201145856;Maria;rua Clarimundo de Melo 857;21033120;rio de janeiro;365669744412;20/10/1986
+202015698;Antônio;Rua dos Andradas, 45;21635270;Rio de Janeiro;RJ;12345678910;1990-04-02
