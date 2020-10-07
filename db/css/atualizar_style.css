@@ -1,0 +1,66 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html,body{
+    background-color: chocolate;
+    width: 100%;
+    height: 100%;
+}
+
+label{
+    display: block;
+}
+
+input[type=text]{
+	padding: 5px;	
+}
+
+button{
+	padding: 10px;	
+}
+
+section #info{
+	background-color:  chartreuse;
+	display: flex;
+	padding: 10px;
+}
+
+article{
+	display: flex;	
+	flex-direction: column;
+	align-content: center;
+	align-items: center;
+	height: 100%;
+	justify-content: center;		
+	margin: 0 auto;
+}
+
+form{
+	padding: 20px;
+	background-color: aliceblue;	
+}
+
+form div, button{
+	margin-top: 10px;
+}
+
+footer{
+	text-align: center;
+	background-color: aliceblue;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	padding: 10px 0;
+}
+
+header{
+	padding: 10px;
+	display: flex;
+	background: rgba(181,182,253,1.00);
+	flex-direction: row;
+}
+
+
+
