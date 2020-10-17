@@ -18,7 +18,7 @@ class Alunos{
     public function __construct()
     {
         try{
-            $this->conn = new mysqli("localhost", "root", "823543", "3dawtest");
+            $this->conn = new mysqli("localhost", "3daw", "mysql123", "3dawTest");
             if($this->conn->connect_errno){
                 printf("Erro");
                 exit();
