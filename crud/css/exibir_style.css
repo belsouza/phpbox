@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;
+	border: none;
+	outline: none;
+}
+
+body, html{   
+    width: 100%;
+	height: 100%;
+	box-sizing: content-box;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+}
+
+
+table{
+	margin: 20px auto;
+	width: 80%;
+	
+}
+
+table tr td{
+	padding: 3px 5px;
+	border-bottom: solid 1px rgba(176,176,176,1.00);	
+}
+
+#container{	
+	display: flex;
+	flex-direction: column;
+	width: 100%;	
+	height: 100%;
+}
+
+#content{	
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	width:  80%;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+	height: 100%;	
+}
+
+#content .busca{
+	display: flex;
+	flex-direction: row;	
+	align-items: center;
+	padding: 10px;
+}
+
+form{
+ 	margin: 0 auto;
+	display: flex;
+	flex-direction: row;
+}
+
+label{
+    display: block;
+}
+
+input[type=search]{
+    flex-grow: 5;
+	padding: 3px;
+	border: solid 1px  rgba(197,197,197,1.00);
+}
+
+button{
+	flex-grow: 4;
+	padding: 3px 10px;
+}
+
+.records{
+	text-align: center;
+}
+
+header, footer{
+    width: 100%;    
+    display: flex;    
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 10px 0;		
+}
+
+header{
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+header h1,
+header nav{
+	margin: 10px;
+}
+
+nav ul{
+	list-style: none;
+}
+
+nav ul li{
+	display: inline-block;
+}
+
+nav ul li a {
+	padding: 10px;
+}
+
+footer{
+	width: 100%;
+	padding: 20px;
+	text-align: center;	
+}
+
+footer p{
+	margin: 0 auto;
+}
+
+#resultados p{
+	margin: 0 auto;	
+	text-align: center;
+	padding: 10px;
+}
+
+.page_button{
+	width: 80%;
+	margin: 0 auto;	
+}
+
+.page_button a{
+	padding: 10px;
+	margin-right: 3px;
+	background-color: antiquewhite;
+	display: inline-block;
+	float: left;
+}
