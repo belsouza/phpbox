@@ -1,35 +1,18 @@
 <?php 
 
-require_once "alunos.php";
-$tabela = "";
-$pages = "";
+require_once "tabela.php";
 
+$tabela = $pagination = $page = $data = "";
 
-if(isset($_POST["procurar"]))
-{
-    $transaction = new Alunos();        
-    $transaction->setArguments($_POST["procurar"]);
-    $transaction->setLimit(10);
-    $tabela = $transaction->exibir_tabela();
-}
-else
-{
-    $page = "";
-    if(isset($_GET["page"]))
-    {
-        $page = $_GET["page"];
-    }
+isset($_POST["procurar"]) ?  $data = $_POST["procurar"] : $data = "";
 
-    $transaction = new Alunos();    
-    $transaction->setLimit(10);
-    $tabela = $transaction->exibir_tabela();
-}
+isset($_GET["page"] ) ? $page =$_GET["page"] : $page = "";
 
+$transaction = new Tabela(10, "", $data  );	
+$tabela = $transaction->exibir_tabela();
 
-
-
-
-
+//Falta terminar a implementação
+//$pagination = $transaction->exibir_paginacao( $page );
 
 
 ?>

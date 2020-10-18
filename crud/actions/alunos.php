@@ -5,9 +5,10 @@
 class Alunos{
     
     private $limit;
-    private $arguments;
+    private $palavra;
     private $offset;
-    private $amount = 0;   
+    private $pagination = 1;
+	private $amount = 1;
     private $table = "alunos";
     private $status = FALSE;
     private $conn;
@@ -44,10 +45,10 @@ class Alunos{
     //  Função insert - insere as informações no BD.
     //  Está sem o campo matricula, que é inserido automaticamente
     //*************************************************************
-
-    public function insert( $nome, $cpf, $datanasc ){
-
-        $response = "";
+	
+	private function inserirAluno( $nome, $cpf, $datanasc ){
+		
+		$response = "";
         
         $matricula = $this->generateid();
 
@@ -60,13 +61,20 @@ class Alunos{
         }
 
         return $response;
+	}
+	
+	//*****************************************************************
+	// insert = retorna o método inserirAluno
+	//*****************************************************************
+    public function insert( $nome, $cpf, $datanasc ){
+		return $this->inserirAluno($nome, $cpf, $datanasc);        
     }
 
     //*************************************************************
-    //  Função update - Atualiza as informações no BD.
-    //  *************************************************************
+    //  Função updateAluno - Atualiza as informações no BD.
+    //*************************************************************
     
-    public function update( $matricula="", $nome="", $cpf="", $datanasc="" ){
+    private function updateAluno( $matricula, $nome, $cpf, $datanasc ){
 
         $response = "";
         $column = array();
@@ -100,54 +108,98 @@ class Alunos{
 
         return $response;
     }
-
+	
+	
+	//*************************************************************
+    //  Função update - retorna a função updateAluno
     //*************************************************************
+    
+    public function update( $matricula="", $nome="", $cpf="", $datanasc="" ){
+		
+        return $this->updateAluno($matricula, $nome, $cpf, $datanasc );
+    }
+	
+	//*************************************************************
     //  Função delete - Exclui as informações no BD.
     //  *************************************************************
 
-    public function delete( $matricula ){
+    private function deleteAluno( $matricula ){
 
         $response = "";
-        $sql = "DELETE FROM {$this->table} WHERE Matricula = '$matricula'";
-        if($this->conn->query($sql)){
-            $response = "Exclusao feita com sucesso!";
-        }
-        else{
-            $response = $this->conn->error;
-        }
-
-        return $response;
+		
+		if($matricula == ""  && $matricula == 1 && $matricula == "*"){
+			$response = false;
+		}
+		
+		else{
+			
+			 $sql = "DELETE FROM {$this->table} WHERE Matricula = '$matricula'";
+			if($this->conn->query($sql)){
+				$response = "Exclusao feita com sucesso!";
+			}
+			else{
+				$response = $this->conn->error;
+			}			
+		}
+       return $response;
     }
 
     //*************************************************************
-    //  Função regcount - Conta quantas linhas tem na tabela
+    //  Função delete - retorna a função privada deleteAluno
     //  *************************************************************
 
-    private function regcount(){
+    public function delete( $matricula ){
+       return $this->deleteAluno($matricula);
+    }
 
-        $sql = "SELECT COUNT(*) FROM Alunos";
+    //****************************************************************
+    //  Função contagemRegistros - Conta quantas linhas tem na tabela
+    //****************************************************************
+
+    private function contagemRegistros(){
+
+        $sql = $this->buildsql("COUNT(*)");				
         $result = $this->conn->query($sql);
         $data =  $result->fetch_array(MYSQLI_NUM); 
         return $data[0];
     }
-
-    //************************************************************************
-    //  Função getData - Retorna a trupla, mediante o fornecimento da matricula 
-    //  ***********************************************************************
-
-    public function getData( $matricula ){
-                
-        $sql = "SELECT Matricula, Nome, CPF, DataNascimento FROM Alunos WHERE Matricula={$matricula}";
+	
+	//*********************************************************************
+    //  Função numeroRegistros - retorna a funcao privada contagemRegistros
+    //*********************************************************************
+	
+	public function numeroRegistros(){
+		return $this->contagemRegistros();	
+	}
+	
+		//**************************************************************************************
+    //  Função selecionarMatricula - Retorna a trupla, mediante o fornecimento da matricula 
+	// Já que a matrícula é única (teoricamente), Só precisamos da linha correspondente
+    // *************************************************************************************
+	
+	private function selecionarMatricula( $matricula ){
+		$sql = "SELECT Matricula, Nome, CPF, DataNascimento FROM Alunos WHERE Matricula={$matricula}";
         $query = $this->conn->query($sql);
         $response = $query->fetch_array(MYSQLI_ASSOC);
         return $response;
-    }
+	}
 
+    //***************************************************************************************
+    //  Função consultarMatricula - Retorna a consulta do metodo privado selecionarMatricula
+    // **************************************************************************************
+
+    public function consultarMatricula( $matricula ){
+          return $this->selecionarMatricula($matricula );    
+    }
+	
+	
     //*************************************************************
-    //  Função setarguments - Obtem um argumento obtido pelo post
-    //  *************************************************************
-    public function setArguments( $arguments ){
-        $this->arguments = $arguments;
+    //  Função consultarPalavra - Obtem um argumento obtido pelo post
+	// Para um select com argumentos  com WHERE
+    // **************************************************************
+	
+    public function consultarPalavra( $palavra ){
+        $this->palavra = $palavra;
     }
 
     //*************************************************************
@@ -168,34 +220,44 @@ class Alunos{
     //  Função buildSql - Constroi a query
     // *************************************************************
     
-    private function buildsql(){
+    private function buildsql( $columns = ""){
 
-        $arguments = $this->arguments;
+        $palavra = $this->palavra;
         $offset = $this->offset;
         $limit = $this->limit;
-
-        $sql = "SELECT * FROM {$this->table} ";        
-
-        if($arguments != ""){
-            $sql .= "WHERE Matricula LIKE '%{$arguments}%' OR Nome LIKE '%{$arguments}%' OR CPF LIKE '%{$arguments}%' OR DataNascimento LIKE '%{$arguments}%'";
-        }
-        
-        if($limit != ""){
-            $sql .= "LIMIT {$limit}";
-        }
-        
+		
+		if(!is_numeric($columns)){
+		
+			if(empty($columns) && ($columns == "")){
+				$columns = "*";
+			}
+	
+			$sql = "SELECT {$columns} FROM {$this->table} ";        
+	
+			if($palavra != ""){
+				$sql .= "WHERE Matricula LIKE '%{$palavra}%' OR Nome LIKE '%{$palavra}%' OR CPF LIKE '%{$palavra}%' OR DataNascimento LIKE '%{$palavra}%'";
+			}
+			
+			if(($limit != "") && (is_numeric($limit))){
+				$sql .= " LIMIT {$limit}";
+			}
+			
+			if(($offset != "") && (is_numeric($offset))){
+				$sql .= " OFFSET {$offset}";
+			}
+		}
         return $sql;
     }
 
     //*************************************************************
-    //  Função select - Retorna um array contendo a consulta do sql
+    //  Função selectAluno - Retorna um array contendo a consulta do sql
     //  *************************************************************
-    public function select(){
+    private function selectAluno(){
 
         $service =  array(); 
         
         $sql = $this->buildsql();
-    
+		    
         if($query = $this->conn->query($sql))
         {
             $i = 0;
@@ -210,85 +272,19 @@ class Alunos{
             $this->amount = $i;
         }
         else{
-            return $this->conn->error();
+            return $this->conn->error;
         }
 
         return $service;
     }
-
-    //**************************************************************
-    //  Função exibir_tabela - Exibe o select na forma de uma tabela
-    //**************************************************************
-    public function exibir_tabela(){            
-        
-        $data = $this->select();
-        $limite = $this->amount;
-        $table = ""; 
-        
-        if(count($data) > 0){
-
-            $table .= "<table id='tabela'>";
-            $table .= "<thead><tr>";
-            $table .= "<td>Matricula</td>";
-            $table .= "<td>Nome</td>";
-            $table .= "<td>CPF</td>";
-            $table .= "<td>Data de Nascimento</td>";
-            $table .= "<td>Editar</td>";
-            $table .= "<td>Excluir</td>";
-            $table .= "</tr></thead>";
-
-            for($i = 0; !empty($data[$i]) && ($i < $limite); $i++){
-
-                $table .= "<tr>";                
-                $table .= "<td>{$data[$i]['Matricula']}</td>";
-                $table .= "<td>{$data[$i]['Nome']}</td>";
-                $table .= "<td>{$data[$i]['CPF']}</td>";
-                $table .= "<td>{$data[$i]['DataNascimento']}</td>";
-                $table .= "<td><a href='atualizar_aluno.php?editar={$data[$i]['Matricula']}'>Editar</a></td>";
-                $table .= "<td><a href='excluir_aluno.php?excluir={$data[$i]['Matricula']}'>Excluir</a></td>";
-                $table .= "</tr>";
-            }
-
-            $table .= "</table>";
-        }
-        else{
-            $table .= "<p>Nenhum resultado encontrado!</p>";
-        }
-    
-        return $table;
-
-    }
-
-    //*************************************************************
-    //  Função getPage - Cria a parte de paginacao - $page_number é o GET page
+	
+	//*************************************************************
+    //  Função select - Retorna a função selectAluno
     //  *************************************************************
-    public function get_pagination( $page_number ){
-
-        $plink = "";
-        $last = round (( $this->regcount() ) / ( $this->limit )) ; //ultima pagina  
-        if(!is_numeric($page_number))
-        {
-            $page_number = 1;            
-        }      
-        
-
-        $ini = $page_number;
-        $fin = $ini + 4;
-
-        $plink .= "<div class='page_button'>";
-        $plink.= "<a href='exibir_alunos.php?page=1'> |< </a>";
-        for($i = $ini; $i < $fin; $i++){
-        
-            $plink.= "<a href='exibir_alunos.php?page={$i}'>{$i}</a>";            
-        }
-        $plink.= "<a href='exibir_alunos.php?page={$i}'>...</a>";
-        $plink.= "<a href='exibir_alunos.php?page={$last}'>{$last}</a>";
-        $plink .= "</div>";            
-        
-        
-        return $plink;
+    public function select(){
+        return $this->selectAluno();
     }
-
+    
     //*************************************************************
     //  Função destruidora - Finaliza a conexão com o bd;
     //  *************************************************************

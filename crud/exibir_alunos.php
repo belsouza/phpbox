@@ -41,18 +41,7 @@
 				</section>
 
 				<section id="resultados">			
-					<?php
-
-					if($tabela == ""){
-						echo "<p>Nenhum registro</p>";
-					}
-					else{
-						echo $tabela;
-						echo $pages; 
-					}		
-
-
-					?>			
+					<?php echo $tabela; echo $pagination; ?>			
 				</section>		
 			</article>
 			
