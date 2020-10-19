@@ -1,5 +1,5 @@
 <?php
-	require_once "actions/inserir.php";
+	require_once "actions/inserir.php";	
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +12,7 @@
 		<meta http-equiv="Pragma" content="no-cache" />
 		<meta http-equiv="Expires" content="0" />
         <link href="css/inserir_style.css" rel="stylesheet" type="text/css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
 		<article>
@@ -33,7 +34,11 @@
 			<section id="content">			
 				<form method="POST">
 					<h1>Cadastro de Alunos</h1>
-					<div><label>Matricula</label><input type="text" name="matricula" placeholder="Matricula auto" disabled></div>
+					<div>
+						<label>Matricula</label>
+						<input type="text" name="matricula" id="matricula" placeholder="Matricula auto" disabled><?php echo $erromatr; ?>
+						<div class="manual"><input type="checkbox" id="manual" name="manual">Manual  </div>
+					</div>
 					<div><label>Nome</label><input type="text" name="nome" placeholder="nome"><p class="errormsg"><?php echo $erronome; ?></p></div>
 					<div><label>CPF</label><input type="text" name="cpf" placeholder="cpf"><p class="errormsg"><?php echo $errocpf; ?></p></div>
 					<div><label>Data de Nascimento</label><input type="text" name="dtNasc" placeholder="Data de nascimento"><p class="errormsg"><?php echo $errodata; ?></p></div>
@@ -41,19 +46,36 @@
 				
 					<div class="message">
 						<?php echo $message; ?>
-					</div>
-					
-					
-				</form>
-				
-			
+					</div>					
+				</form>			
 			</section>
 			
 			<footer>
 				<p>3DAW - Faeterj | 2020 </p>			
 			</footer>
 		</article>
-    	
-    
+    	<script type="text/javascript">
+			$(function(event) {	
+				
+				$(document).ready(function(){
+					
+					var cbox = $("input[type=checkbox]" );					
+					
+					cbox.on( "click", function(){
+						
+						if( $("input[type=checkbox]:checked" ).length > 0) {
+							$("#matricula").removeAttr('disabled placeholder');							
+						}
+						else{
+							$("#matricula").attr({
+								disabled: disabled															
+							});	
+						}					
+					});
+					
+				});
+			});			 
+		
+		</script>    
     </body>
 </html>

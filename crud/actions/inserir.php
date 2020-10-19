@@ -3,15 +3,31 @@
 require_once "validacao.php";
 require_once "alunos.php";
 
+$matricula = "";
 $nome = "";
 $cpf = "";
 $dataNasc = "";
+$erromatr = "";
 $erronome = "";
 $errocpf = "";
 $errodata = "";
 $message = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+	
+	
+	if(isset($_POST["manual"])){
+		
+		if(validarmatricula($_POST["matricula"]))
+		{
+			$matricula = $_POST["matricula"];
+		}
+		else{
+			$erromatr = "O campo matricula não pode estar em branco. ";
+		}
+		
+		
+	}
 
     if(validarnome($_POST["nome"]))
     {
@@ -40,7 +56,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
     $transaction = new Alunos();  
-    $message = $transaction->insert( $nome, $cpf, $dataNasc );
+    $message = $transaction->insert( $matricula, $nome, $cpf, $dataNasc );
 
 }
 

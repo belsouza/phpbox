@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     {
         $data = $_GET["editar"];
         $complete = new Alunos();
-        $resultado = $complete->getData( $data );
+        $resultado = $complete->consultarMatricula( $data );
         $vmatricula = $resultado['Matricula'];
         $vnome = $resultado['Nome'];
         $vcpf = $resultado['CPF'];

@@ -109,4 +109,12 @@ footer p{
 	background-color: chartreuse;
 }
 
+.manual{
+	padding: 3px 0;
+}
+
+.manual input{
+	margin-right: 5px;
+}
+
 

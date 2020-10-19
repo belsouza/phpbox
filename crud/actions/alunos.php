@@ -46,11 +46,14 @@ class Alunos{
     //  Está sem o campo matricula, que é inserido automaticamente
     //*************************************************************
 	
-	private function inserirAluno( $nome, $cpf, $datanasc ){
+	private function inserirAluno($matricula, $nome, $cpf, $datanasc ){
 		
 		$response = "";
+		
+		if(($matricula == "") && (empty($matricula))){
+			$matricula = $this->generateid();
+		}    
         
-        $matricula = $this->generateid();
 
         $sql = "INSERT INTO {$this->table} ( Matricula, Nome, CPF, DataNascimento ) VALUES ('{$matricula}', '{$nome}', '{$cpf}', '{$datanasc}')";
         if($this->conn->query($sql)){
@@ -66,8 +69,8 @@ class Alunos{
 	//*****************************************************************
 	// insert = retorna o método inserirAluno
 	//*****************************************************************
-    public function insert( $nome, $cpf, $datanasc ){
-		return $this->inserirAluno($nome, $cpf, $datanasc);        
+    public function insert( $matricula, $nome, $cpf, $datanasc ){
+		return $this->inserirAluno($matricula, $nome, $cpf, $datanasc);        
     }
 
     //*************************************************************
