@@ -1,7 +1,5 @@
 <?php
 
-error_reporting(0);
-
    class Matriculas{
 
       private $host = "localhost";
@@ -105,6 +103,7 @@ error_reporting(0);
          
          if($args == ""){
 
+            
             $sql = "SELECT * FROM Matriculas";
             $result = $this->conn->query( $sql );
             if($result->num_rows > 0){
@@ -114,34 +113,49 @@ error_reporting(0);
                while($row = $result->fetch_array(MYSQLI_ASSOC)){
                   array_push( $consulta, $row);
                }
-
                return $consulta;
+
             }
-            else{
-               return "Nenhum dado ainda";
-            } 
+            
          }
          else
-         {
-
-            echo $args; //NomeCPFDataNascimento 
+         {       
 
             $sql = "SELECT {$args} FROM Matriculas WHERE Matricula = {$matricula}";
             $result = $this->conn->query( $sql );
 
             $cont = $result->num_rows;
-            echo $cont;
-
             if($cont > 0){
 
                $row = $result->fetch_row(); 
                return $row[0];              
                
-            }
-            else{
-               return "Nenhum dado da coluna";
-            }
+            }            
          }
+
+         return "Nenhum dado ainda.";
+      }
+
+      private function listcolumns( $columnname )
+      {
+         $sql = "SELECT {$columnname} FROM Matriculas";
+         $result = $this->conn->query( $sql );
+         $cont = $result->num_rows;
+
+         if($cont > 0){
+
+            if($result->num_rows > 0){
+
+               $consulta = array();
+
+               while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                  array_push( $consulta, $row['Matricula']);
+               }
+               return $consulta;
+
+            }      
+            
+         } 
       }
 
       private function search ( $palavra ){
@@ -176,6 +190,10 @@ error_reporting(0);
          }              
       }
 
+      public function listar_matriculas(){
+         return $this->listcolumns("Matricula");
+      }
+
       public function exibir_matricula(  $matricula ){
          return $this->select('Matricula', $matricula);
       }
@@ -192,7 +210,7 @@ error_reporting(0);
          return $this->search($palavra);
       }
 
-      public function exibir_matriculas(){         
+      public function exibir_tudo(){         
          return $this->select("", "");         
       }
 
@@ -211,8 +229,10 @@ error_reporting(0);
       public function __destruct(){
          $this->conn->close();
       }
-
    }
+
+   
+  
 
 
 ?>

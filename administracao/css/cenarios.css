@@ -1,0 +1,38 @@
+.fconsulta{
+    display: flex;
+    flex-direction: row;
+}
+
+.fconsulta div{
+    margin-right: 20px;
+}
+
+.fconsulta select{
+    padding: 5px 0;
+}
+
+.form_control{
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0;
+}
+
+.form_control div{
+    margin-right: 15px;
+}
+
+.fcontainer{
+
+    padding: 0 10px;
+}
+
+.opcoes{
+    background-color: gray;
+    margin-top: 10px;
+    padding: 5px;
+}
+
+.opcoes span{
+    display: block;
+    padding: 2px 0;
+}

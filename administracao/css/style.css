@@ -181,16 +181,6 @@ footer{
     padding:  10px 50px  10px 5px ;
 }
 
-.fconsulta{
-    display: flex;
-    flex-direction: row;
-}
 
-.fconsulta div{
-    margin-right: 20px;
-}
 
-.fconsulta select{
-    padding: 5px;
-}
 

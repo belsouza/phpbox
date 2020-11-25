@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            display: flex;
+            flex-direction: row;
+        }
+    
+        form > div{
+            display: flex;
+            flex-direction: column;
+        }
+		
+		.signal{
+			padding: 0 10px;
+		}
+		
+		section{
+			display: flex;
+			flex-direction: row;
+			background-color: aquamarine;
+		}
+		
+		button{
+			margin-left: 20px;
+		}
+    
+    </style>
+</head>
+
+<body>
+    <form id="formulario" method="post">
+		
+		<section>
+			<div>
+				<label for="p1">Parcela 1</label>
+				<input type="text" name="p1" id="p1" placeholder="Parcela 1" value="" >
+			</div>
+			<div class="signal">+</div>
+			<div>
+				<label for="p2">Parcela 2</label>
+				<input type="text" name="p2" id="p2" placeholder="Parcela 2" value="" >
+			</div>
+			<div class="signal">=</div>
+			<div>
+				<label for="">Resultado</label>
+				<input type="text" name="pt" id="pt" placeholder="Total" value="" >
+			</div>
+			<button type="button" id="calcular">Calcular</button>		
+		</section>
+        
+    </form>
+	
+	
+	
+	
+    <script type="text/javascript">
+		
+		
+        var op1 = document.getElementById("p1");
+        var op2 = document.getElementById("p2");
+		
+				
+		document.getElementById("calcular").addEventListener("click", function(){
+			
+			var x = parseInt( op1.value );
+			var y = parseInt( op2.value );
+			document.getElementById("pt").value = x + y;
+		});
+		
+         
+    </script>    
+</body>
+    
+</html>

@@ -44,7 +44,9 @@
 
                 <section class="formulario">
 
-                    <h1><?php echo $confirma;  ?> Alunos</h1>
+                    <h1>Matricula de Alunos</h1>
+                    
+                        <?php echo $confirma;  ?> 
 
                         <form method="post" name="formulario1">
 

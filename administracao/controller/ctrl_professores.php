@@ -1,7 +1,7 @@
 <?php
 
     require_once "tabelas/Validar.php";
-    require_once "tabelas/Professores.php";
+    require_once "tabelas/TProfessores.php";
     require_once "tabelas/Tabela.php";
 
     $consulta = "Hello World";

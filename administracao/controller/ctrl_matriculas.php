@@ -1,8 +1,8 @@
 <?php
 
     require_once "tabelas/Validar.php";
-    require_once "tabelas/Matriculas.php";
-    require_once "tabelas/Disciplinas.php";
+    require_once "tabelas/TMatriculas.php";
+    require_once "tabelas/TDisciplinas.php";
     require_once "tabelas/Tabela.php";
 
     $consulta = "Hello World";
@@ -21,20 +21,24 @@
     $consulta_datanascimento = "";
     $consultatabela = "";
 
-    $matriculas = new Matriculas();
+    
     $disciplinas = new Disciplinas();
     $validar = new Validar();
+    $matriculas = new Matriculas();
 
+    $m = $matriculas->listar_matriculas();
+    $doptions = "";
+
+    foreach($m as $item){
+        $doptions .= "<option value='{$item}'>{$item}</option>";
+    }
 
     
 
+        
+
     if($_SERVER["REQUEST_METHOD"] === 'POST'){
 
-
-        if(isset($_POST["inserir"])){
-
-            
-        }        
 
     }
 
@@ -98,7 +102,7 @@
         $consulta = $tabela->exibir();
     }
     else{
-        $consultatabela = $matriculas->exibir_matriculas();
+        $consultatabela = $matriculas->exibir_tudo();
         $tabela = new Tabela( $consultatabela );
         $consulta = $tabela->exibir();
     }

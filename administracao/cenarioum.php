@@ -1,4 +1,4 @@
-<?php include_once "controller/ctrl_cenarioum.php";  ?>
+<?php include_once "controller/ctrl_cenariodois.php";  ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,6 +6,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/style.css" rel="stylesheet">
+        <link href="css/cenarios.css" rel="stylesheet"> 
+        <script type="text/javascript">
+
+            function escolher( argumento ){
+                document.getElementById("turma").value = argumento;
+            }
+
+        </script>       
     </head>
     <body>
         <article id="container">
@@ -40,63 +48,79 @@
                 
 		        <section>
                     
-                    <fieldset class="fconsulta">
+                    <article class="fcontainer">
 
-                        <div>
-                            <label for="alunos">Alunos</label>
-                            <select name="alunos" form="formularioum">
-                                <?php  echo $option3; ?>                      
-                            </select>
-                        </div>
-
-                        <button type="submit">Pesquisar</button>
-                                            
-                    </fieldset>
-                    
-
-                    <form id="formularioum" method="post" action = "response/rescenarioum.php">
-
-                        <div class="form_control">
-                        <label for="nome">Nome</label>
-                        <input type="text" name="nome" id="nome" placeholder="Nome" />                       
-
+                        <form method="post" id="formularioum">
                         
-                        <label for="nome">Período</label>
-                        <input type="text" name="periodo" id="periodo" placeholder="Período" />
-                        </div>
+                            <fieldset class="fconsulta">
 
-                        <fieldset class="fconsulta">
-                            <legend>M_1_PI</legend>
+                                <div>
+                                    <label for="alunos">Alunos</label>
+                                    <select name="alunos" id="matricula_alunos" form="formularioum">
+                                        <?php  echo $option3; ?>                      
+                                    </select>                                   
+                                </div>
 
+                                <button id="consultar" type="submit">Pesquisar</button>
+                                                
+                            </fieldset>              
+
+                        </form>                        
+                    </article> 
+                    
+                    <article class="fcontainer">
+                        <section class="form_control">
+
+                                <div>
+                                    <label for="nome">Nome</label>
+                                    <input type="text" name="nome" id="nome" placeholder="Nome" value="<?php echo $nomealuno; ?>" />               
+                                </div>
+                                
+                                <div>
+                                    <label for="nome">Período</label>
+                                    <input type="text" name="periodo" id="periodo" placeholder="Período" value="<?php echo $periodoaluno; ?>" />
+                                </div> 
+
+                        </section>
+                        <section class="form_control">
+                                <div>
+                                <label for="disciplina">Disciplina</label>                                
+                                    <select name="disciplina" id="disciplina">
+                                    <?php  echo $option1; ?>                      
+                                    </select>
+                                </div>
+
+                                <form name="check" id="check" method="post">
+                                    <input type="hidden" name="oscar" id = "oscar">
+                                </form>
+                                
+                        </section>
+
+                        <section class="form_control">
                             <div>
-                                <label for="turma">Turma</label>
-                                <select name="turma">
-                                    <?php  echo $option2; ?>                      
-                                </select>
-                            </div>
+                                <label>Turmas Disponiveis</label>
 
-                            <div>
-                                <label for="disciplina">Disciplina</label>
-                                <select name="disciplina" id="disciplina">
-                                <?php  echo $option1; ?>                      
-                                </select>
-                            </div>
+                                <form id="turmas">
+                                        <?php echo $content; ?>
+                                </form>             
+                                
+                                
+                            </div>                           
 
-                           
-                            
-                        </fieldset>
+                        </section>
 
+                        <form id="formulariodois" method="post" action = "response/rescenariodois.php">
+
+                            <input type="hidden" name="matricula" id = "matricula" value="<?php  echo $_SESSION["matricula"];   ?>" >
+                            <input type="hidden" name="disciplina" id = "disciplina" value="<?php  echo $_SESSION["disciplina"];   ?>" >
+                            <input type="hidden" name="periodo" id = "periodo" value="<?php  echo $_SESSION["periodo"];   ?>" >
+                            <input type="hidden" name="turma" id = "turma"  >
+
+                            <button type="submit">Matricular</button>   
+                        </form>
+
+                    </article>
                         
-                        
-                        
-                    
-                        <button type="submit">Matricular</button>
-                    
-                    </form>
-                
-                
-                
-                
                 </section>
 
             </section>        
@@ -104,6 +128,20 @@
                 <p>3daw - 2020</p>
             </footer>        
         
-        </article>    
+        </article>
+        <script type="text/javascript">
+        
+         
+        
+            document.getElementById("disciplina").addEventListener("change", function(){
+                
+                var u = this.value;
+                document.getElementById("oscar").setAttribute("value", u );
+                document.getElementById("check").submit();
+
+            });
+            
+        </script>
+        
     </body>
 </html>
