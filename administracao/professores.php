@@ -18,7 +18,7 @@
                     <section>
                         <h1>Administracao</h1>
                     </section>
-                    <nav>
+                    <nav class="nmain">
                         <ul>
                             <li><a href="index.php">Home</a></li>
                             <li><a href="alunos.php">Alunos</a></li>
@@ -33,7 +33,7 @@
             <section id="content">
 
                 <section class="lateralbar">
-                    <nav aria-label="outros" id="outros">
+                    <nav>
                         <ul>
                             <li><a href="index.php">Home</a></li>
                             <li><a href="cenarioum.php">Cenario1</a></li>
@@ -46,7 +46,7 @@
 
                     <h1><?php echo $confirma;  ?> Alunos</h1>
 
-                        <form method="post" name="formulario1">
+                        <form method="post" name="formulario1" class="cadform">
 
                             <?php if($editar == TRUE){  ?>
                             <div>

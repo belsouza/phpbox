@@ -37,7 +37,7 @@
             <section id="content">
 
                 <section class="lateralbar">
-                    <nav aria-label="outros" id="outros">
+                    <nav aria-label="outros" >
                         <ul>
                             <li><a href="index.php">Home</a></li>
                             <li><a href="cenarioum.php">Cenario1</a></li>
@@ -50,7 +50,7 @@
                     
                     <article class="fcontainer">
 
-                        <form method="post" id="formularioum">
+                        <form method="post" id="formularioum" >
                         
                             <fieldset class="fconsulta">
 

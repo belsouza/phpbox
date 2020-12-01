@@ -43,19 +43,19 @@ header > section{
     display: flex;
 }
 
-.nmain{
+nav{
     display: flex;
 }
 
-.nmain ul{       
+nav ul{       
     list-style: none;
 }
 
-.nmain > ul > li{
+nav ul > li{
     display: inline-block;
 }
 
-.nmain nav > ul > li > a{    
+nav ul > li > a{    
     text-decoration: none;
     padding: 5px;
     color: black;
@@ -69,6 +69,7 @@ header > section{
     padding: 10px;
     justify-content: stretch;
     box-sizing: border-box;
+
 }
 
 .consulta{ 
@@ -82,10 +83,11 @@ header > section{
     
 }
 
-.cadform form{
+.formulario form{
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;    
+    box-sizing: border-box;
+    
 }
 
 .searchform{    
@@ -104,33 +106,29 @@ header > section{
     text-align: center;   
 }
 
-.searchform button{
-    margin-top: 15px ;
-    padding: 10px 5px;
-}
-
-.searchform label{
-    display: block;
-}
-
 table tr td{
     padding: 5px;
     border-bottom: solid 1px black;
 }
 
-.cadform div{
+form div{
     display: flex;
     flex-direction: column;
     padding: 5px 0;
 }
 
+label{
+    display: block;
+}
 
-
-.cadform input{
+input{
     padding: 5px;      
 }
 
-
+button{
+    margin-top: 15px ;
+    padding: 10px 5px;
+}
 
 #content{
     display: flex;
@@ -183,12 +181,9 @@ footer{
     padding:  10px 50px  10px 5px ;
 }
 
-.cadform button{
-	margin-top: 10px;
-	padding: 7px;
+#form1{
+	
 }
-
-
 
 #form2{
 	display: none;
