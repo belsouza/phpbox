@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script>
+            function loadDoc() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("demo").innerHTML = this.responseText;
+                    }
+                };
+                xhttp.open("GET", "ajax_info.txt", true);
+                xhttp.send();
+            }
+
+            function mudaSelect(){
+                
+                let estado = document.getElementById("PR");
+                estado.value = "RJ";
+
+               //querySelector
+            }
+
+            function criaOption( valor ){
+                let estadonovo = document.createElement("option");
+                estadonovo.setAttribute("value", valor);
+                estadonovo.innerHTML = valor;
+                document.getElementById("uf").appendChild(estadonovo);
+            }
+
+            function criaOptionAula(){
+                let estadonovo = document.createElement("option");
+                estadonovo.setAttribute("value", "ES");
+                let txt = document.createTextNode("Espirito Santo")
+                estadonovo.appendChild(txt);
+                document.getElementById("uf").appendChild(estadonovo);
+            }
+
+            function obterValor(){
+                let valor = document.getElementById("uf").value;
+                let opcaonovo = document.createElement("option");
+                opcaonovo.setAttribute("value", valor );
+                opcaonovo.innerHTML = valor; 
+                document.getElementById("cidade").appendChild(opcaonovo);
+            }
+
+        </script>
+    </head>
+    <body>
+        <section>
+            <h2>The XMLHttpRequest Object</h2>
+            <form>
+                <div>
+                    <label>Nome</label>
+                    <input type="text" name="nome" id="nome" onchange="criaOption(this.value)" />
+                </div>
+
+                <div>
+                    <label>Nome</label>
+                    <select name="uf" id="uf" >
+                        <option value="" selected>Escolha a cidade</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                        <option value="EX">Estrangeiro</option>                     
+                    </select>
+                </div>
+                
+                <div>
+                    <label>Cidade</label>
+                    <select name="cidade" id="cidade" onchange="obterValor()" >
+                        <option value="" selected>Escolha a cidade</option>    
+                    </select>
+                </div> 
+
+            </form>
+
+            <p id="demo">Let AJAX change this text.</p>
+            <button type="button" onclick="loadDoc()">Change Content</button>
+
+        </section>
+        
+
+    </body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>XMLHttpRequest Teste</title>
+        <meta charset="UTF-8">		
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+		<link rel="icon" href="img/cuteicecream.png" type="image/png" sizes="16x16" >
+        <script>                       
+
+            function obterValor( estado ){
+
+                var city = document.getElementById("cidade").value;
+               
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        //document.getElementById("demo").innerHTML = this.responseText;
+
+                        let cidade = this.responseText;
+                        let options = cidade.split("\r\n").sort(); 
+                        options = options.filter(item => item)                      
+                        for(var i = 0; i < options.length; i++){                          
+                            obterCidades(options[i]);                     
+                        }                        
+
+                        document.getElementById("demo").innerHTML = JSON.stringify(options, null, 4); ;
+                    }
+                };
+                xhttp.open("GET", "request.php?uf=" + estado, true);
+                xhttp.send();
+            }
+
+            function limpar(){
+
+                var city = document.getElementById("cidade");
+                city.innerHTML = '<option value="" selected>Escolha a cidade</option>';        
+
+            }            
+           
+            function obterCidades( valor ){
+
+                let opcaonovo = document.createElement("option");
+                opcaonovo.setAttribute("value", valor );
+                opcaonovo.innerHTML = valor; 
+                document.getElementById("cidade").appendChild(opcaonovo);
+            }
+
+            function submeter(){
+
+				let nome = document.getElementById("nome").value;
+				let uf = document.getElementById("uf").value;
+				let cidade = document.getElementById("cidade").value;
+				
+				
+				var msg = "";
+				
+				if(nome == ""){
+					msg = msg + "O campo nome é obrigatorio!\r\n";
+				}
+				
+				if(uf == ""){
+					msg = msg + "Escolha um estado!";
+				}
+								
+				if(cidade == ""){
+					msg = msg + "Escolha uma cidade!";
+				}
+				
+				
+				if((nome == "") || (uf == "") || (cidade == "")){
+					alert(msg);
+				}				
+				else{
+					document.getElementById("formulario").submit();
+                	document.getElementById("demo").innerHTML = "Submetido";					
+				}				
+                
+            }
+
+        </script>
+    </head>
+    <body>
+		<article id="container">
+        <section>
+            <h2>XMLHttpRequest Teste</h2>
+            <form id="formulario" action="response.php">
+                <div>
+                    <label>Nome</label>
+                    <input type="text" name="nome" id="nome" required />
+                </div>
+
+                <div>
+                    <label>Estado</label>
+                    <select name="uf" id="uf" onchange="obterValor(this.value)" onclick="limpar()" >
+                        <option value="" selected>Escolha o estado</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                        <option value="EX">Estrangeiro</option>                     
+                    </select>
+                </div>
+                
+                <div>
+                    <label>Cidade</label>
+                    <select name="cidade" id="cidade" >
+                        <option value=" " selected>Escolha a cidade</option>    
+                    </select>
+                </div> 
+				
+				<button type="button" onclick="submeter()"><span>Submeter</span><img src="img/cuteicecream.png" alt="icecream"></button>
+            </form>
+
+            <textarea rows="10" cols="50" id="demo">Nenhum aqui</textarea>
+
+            
+
+        </section>
+        
+		</article>
+    </body>
+</html>
