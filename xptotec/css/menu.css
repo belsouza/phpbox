@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* CSS Document */
+
+header nav{
+	margin-right: 30px;
+}
+
+header nav ul {
+	list-style: none;
+}
+
+header nav ul > li {
+	display: inline-block;
+}
+
+header nav ul > li > a{
+	text-decoration: none;
+	padding: 10px;
+}
+
+header nav ul > li > ul{
+	
+	display: none;
+	position: absolute;
+	right: 30px;	
+	line-height: 30px;
+	margin-top: 10px;
+	z-index: 1;
+}
+
+header nav ul > li > ul > li{
+	display:  block;
+	margin-bottom: 1px;
+	background-color: darkgray;
+}
+
+
+header nav ul .has_sub:hover ul{
+	display: block;	
+}
+
+
+
+

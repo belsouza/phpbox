@@ -1,0 +1,120 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{
+    margin:0;
+    padding: 0; 
+    border: none;
+    outline: none;   
+}
+
+html, body{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+#container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+	overflow: hidden;
+}
+
+#cadastrar{
+    display: flex;
+    flex-direction: column;
+    background-color: #cccccc; 
+    padding: 10px; 
+	width: 40%;
+	margin: 0 auto;
+	box-sizing: border-box;
+}
+
+
+
+
+#cadastrar .line{
+    display: flex;
+    flex-direction: row;	
+    margin-top: 10px;
+}
+
+.sp{
+	justify-content:space-between;
+}
+
+#cadastrar .col{
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px; 
+	
+}
+
+
+#cadastrar input[type=text],
+#cadastrar select,
+#cadastrar input[type=tel]
+{
+    border: solid 1px crimson;
+    padding: 7px;
+	display: flex;
+	
+}
+
+#cadastrar input[type=date]{
+    border: solid 1px crimson;
+    padding: 5px;
+}
+
+#cadastrar button{    
+    background-color: crimson;
+    padding: 10px 50px;
+	margin-top: 5px;
+    
+}
+
+header{
+	display: flex;
+	flex-direction: row;
+	justify-content:space-between;
+	padding-top: 5px;
+	width: 100%;
+	background-color: rgba(180,180,181,1.00);
+}
+
+header .informations{
+	display: inline-flex;
+}
+
+header .informations a{
+	text-decoration: none;
+	color: black;
+	padding-right: 10px;
+}
+
+#contents{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;	
+	height: 100%;
+	width: 100%;
+}
+
+footer{
+	display: flex;
+	flex-direction: row;		
+	background-color: rgba(180,180,181,1.00);
+	justify-content: center;
+	padding: 5px;
+	width: 100%;
+}
+
+footer p{	
+	display: block;
+}
+
+

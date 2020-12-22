@@ -1,0 +1,168 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{
+    margin:0;
+    padding: 0; 
+    border: none;
+    outline: none;   
+}
+
+html, body{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+	text-align: center;
+}
+
+#container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;	
+}
+
+#solicitar{
+    display: flex;
+    flex-direction: row;
+    background-color: #cccccc; 
+    padding: 10px;   
+}
+
+#solicitar div{
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;    
+}
+
+#solicitar select{
+    border: solid 1px crimson;
+    padding: 7px;
+}
+
+#solicitar input[type=date]{
+	border: solid 1px crimson;
+    padding: 5px;
+}
+
+#solicitar input[type=time]
+{
+    border: solid 1px crimson;
+    padding: 5px;
+}
+
+#solicitar button{    
+    background-color: crimson;
+    padding: 5px 50px;
+    margin: 18px 0 1px 0;
+}
+
+header{
+	display: flex;
+	flex-direction: row;
+	justify-content:space-between;
+	padding-top: 5px;
+	width: 100%;
+	background-color: rgba(180,180,181,1.00);
+}
+
+header .informations{
+	display: inline-flex;
+}
+
+header .informations a{
+	text-decoration: none;
+	color: black;
+	padding-right: 10px;
+}
+
+
+#contents{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100%;
+}
+
+footer{
+	display: flex;
+	flex-direction: row;		
+	background-color: rgba(180,180,181,1.00);
+	justify-content: center;
+	padding: 5px;
+	width: 100%;
+}
+
+footer p{	
+	display: block;
+}
+
+#escolha{
+	
+	height: 100%;
+	background: rgba(0,0,0, 0.1) ;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	margin: 15px 5%;
+}
+
+
+#escolha .item{	
+	width: 180px;
+	height: 250px;
+	float: left;
+	box-shadow: 0 0 10px #ccc;
+	border: solid 2px crimson;
+	padding: 10px;
+	margin: 10px;
+	box-sizing: border-box;	
+	background-color: white;
+	clear: right;
+}
+
+.item figure{
+	text-align: center;
+	color: crimson;
+	box-sizing: border-box;
+}
+
+.item h2{
+	font-size: 12px;
+}
+
+.item .motor{
+	color: coral;
+}
+
+
+.item img{	
+	background-color: ghostwhite;
+	margin: 0 auto;
+	width: 100%;
+	height: auto;	
+}
+
+.item .preco{
+	text-align: center;
+}
+
+.item .preco span {
+	color: lightslategrey;
+}
+
+
+.item .preco span{
+	font-size: 20px;
+	font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";	
+}
+
+.item button{
+	background-color: greenyellow;
+	padding: 10px;
+	width: 100%;
+}
+
+
